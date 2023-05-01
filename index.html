@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Closure Example</title>
+  </head>
+  <body>
+    <h1>Counter</h1>
+    <p>Count: <span id="count"></span></p>
+    <button id="increment-btn">Increment</button>
+    <button id="decrement-btn">Decrement</button>
+
+    <script src="app.js">
+        
+    </script>
+    <script>
+        const counter = (() => {
+    let count = 0;
+
+    const increment = () => {
+      count++;
+    };
+
+    const decrement = () => {
+      count--;
+    };
+
+    const getCount = () => {
+      return count;
+    };
+
+    return {
+      increment,
+      decrement,
+      getCount,
+    };
+  })();
+      const countElement = document.getElementById('count');
+      const incrementButton = document.getElementById('increment-btn');
+      const decrementButton = document.getElementById('decrement-btn');
+
+      incrementButton.addEventListener('click', () => {
+        counter.increment();
+        countElement.textContent = counter.getCount();
+      });
+
+      decrementButton.addEventListener('click', () => {
+        counter.decrement();
+        countElement.textContent = counter.getCount();
+      });
+
+      countElement.textContent = counter.getCount();
+    </script>
+  </body>
+</html>
